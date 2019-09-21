@@ -25,6 +25,7 @@ onEvent("maze_scrn", "keydown", function(event) {
   wallsBound();
 });
 
+// main function
 function wallsBound(){
   var wallsArray =[];
   var wallNum = 1;
@@ -32,6 +33,8 @@ function wallsBound(){
     appendItem(wallsArray, "wall"+wallNum);
     wallNum++;
   }
+  
+  //PreventTurtleFromCrossingWalls child algorithm
   for (var i = 0; i < 14; i++) {
     var bottomRangeX = getXPosition(wallsArray[i]);
     var upperRangeX = bottomRangeX +getProperty(wallsArray[i],"width");
@@ -87,6 +90,7 @@ function bound(input, min, max) {
 var hitsNeeded = 3;
 onEvent ("monster_img", "click", function(){
   setPosition("monster_img", randomNumber(35, 250), randomNumber(85, 350),randomNumber(100,200), randomNumber(100,200));
+  //abstraction updateVar is used to update the hitsNeeded counter variable
   hitsNeeded = updateVar("hitsNeededUpdate", hitsNeeded);
   if (hitsNeeded ===0){
     setScreen("attack_scrn");
@@ -95,6 +99,7 @@ onEvent ("monster_img", "click", function(){
 
 var lives = 3;
 onEvent("catch_background","click", function(){
+  // abstraction updateVar is used to update the lives counter variable
   lives = updateVar("livesUpdate", lives);
   if (lives ===0){
     setScreen("lose_scrn");
@@ -103,6 +108,7 @@ onEvent("catch_background","click", function(){
 
 var health =3;
 onEvent("attack_bttn", "click", function(event) {
+  //abstraction updateVar is used to update the health counter variable
   health = updateVar("healthUpdate", health);
   if (health ===0){
     setScreen("win_scrn");
